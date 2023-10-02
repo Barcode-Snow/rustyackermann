@@ -1,24 +1,16 @@
 fn main() {
-    let m:i128= 5;
-    let n:i128 = 5;
-    ackermann(m, n);
+    let m: i128 = 3;
+    let n: i128 = 3;
+    let result = ackermann(m, n);
+    println!("Ackermann({}, {}) = {}", m, n, result);
 }
 
-fn ackermann(mut m:i128, mut n:i128){
+fn ackermann(m: i128, n: i128) -> i128 {
     if m == 0 {
-        n = n +1;
-        println!("n:{}",n);
-    }
-    else if n == 0 {
-        m=m-1;
-        ackermann(m, n);
-    }
-    else {
-        n = n-1;
-        ackermann(m, n);
-        m=m-1;
-        ackermann(m, n);
+        n + 1
+    } else if n == 0 {
+        ackermann(m - 1, 1)
+    } else {
+        ackermann(m - 1, ackermann(m, n - 1))
     }
 }
-
-
