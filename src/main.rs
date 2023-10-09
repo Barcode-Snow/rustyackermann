@@ -1,8 +1,14 @@
+use std::thread;
+
 fn main() {
-    let m: i128 = 3;
-    let n: i128 = 3;
-    let result = ackermann(m, n);
-    println!("Ackermann({}, {}) = {}", m, n, result);
+    thread::Builder::new().stack_size(32*1024*1024).spawn(move || {
+        for i  in 1..=100 {
+            let m: i128 = i;
+            let n: i128 = i;
+            let result = ackermann(m, n);
+            println!("Ackermann({}, {}) = {}", m, n, result);
+        }
+    }).unwrap();
 }
 
 fn ackermann(m: i128, n: i128) -> i128 {
